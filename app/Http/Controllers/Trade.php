@@ -34,6 +34,20 @@ class Trade extends Controller
         return response()->json('criado com sucesso', 200);
     }
 
+    public function put(Request $request, $id) {
+
+        $trade = Trades::find($id);
+
+        $trade->payout = $request->input('payout');
+        $trade->date = $request->input('date');
+        $trade->pair = $request->input('pair');
+        $trade->investiment = $request->input('investiment');
+
+        $trade->save();
+
+        return response()->json('atualizado com sucesso', 200);
+    }
+
     public function delete(Request $request, $id) {
 
         $trades = Trades::find($id);

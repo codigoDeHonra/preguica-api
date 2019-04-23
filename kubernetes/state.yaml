@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: statefulset-mongo
+spec:
+  template:
+    metadata:
+      labels:
+        name: iqoption-mongodb
+    spec:
+      containers:
+        - name: iqoption-mongodb
+          image: wouerner/iqoption-mongodb:latest
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: root
+            - name: MONGO_DATA_DIR
+              value: /data

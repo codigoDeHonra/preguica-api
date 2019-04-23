@@ -27,14 +27,32 @@ $router->get('/db', function () use ($router) {
 /*     'as' => 'trades', 'uses' => 'ExampleController@trades' */
 /* ]); */
 
+$router->get('/trades', [
+    'as' => 'trade', 'uses' => 'Trade@index'
+]);
+
 $router->post('/trade', [
     'as' => 'trade', 'uses' => 'Trade@post'
 ]);
 
-$router->get('/trades', [
-    'as' => 'trade', 'uses' => 'Trade@index'
+$router->put('/trade/{id}', [
+    'as' => 'trade', 'uses' => 'Trade@put'
 ]);
 
 $router->delete('/trade/{id}', [
     'as' => 'trade', 'uses' => 'Trade@delete'
 ]);
+
+Route::group([
+
+    /* 'middleware' => 'api', */
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});

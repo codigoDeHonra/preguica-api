@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iqoption-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iqoption
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: iqoption
+        tier: backend
+    spec:
+      containers:
+        - name: iqoption
+          image: wouerner/iqoption-dashboard:latest
+          ports:
+            - containerPort: 80
