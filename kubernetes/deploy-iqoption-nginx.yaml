@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iqoption-nginx-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iqoption
+      tier: nginx
+  template:
+    metadata:
+      labels:
+        app: iqoption
+        tier: nginx
+    spec:
+      containers:
+        - name: iqoption-nginx-backend
+          image: wouerner/iqoption-nginx-backend:latest
+          ports:
+            - containerPort: 8081

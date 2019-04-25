@@ -3,6 +3,7 @@ kind: StatefulSet
 metadata:
   name: statefulset-mongo
 spec:
+  serviceName: mongo
   template:
     metadata:
       labels:
@@ -12,7 +13,7 @@ spec:
         - name: iqoption-mongodb
           image: wouerner/iqoption-mongodb:latest
           ports:
-            - containerPort: 3306
+            - containerPort: 27017
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               value: root
@@ -20,3 +21,10 @@ spec:
               value: root
             - name: MONGO_DATA_DIR
               value: /data
+          volumeMounts:
+            - name: volume-mongodb
+              mountPath: /data
+      volumes:
+        - name: volume-mongodb
+          persistentVolumeClaim:
+            claimName: configuracao-mongo

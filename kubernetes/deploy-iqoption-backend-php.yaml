@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iqoption-backend-deployment
+  name: iqoption-nginx-backend-php-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: iqoption
-      tier: backend
+      tier: php
   template:
     metadata:
       labels:
         app: iqoption
-        tier: backend
+        tier: php
     spec:
       containers:
-        - name: iqoption
-          image: wouerner/iqoption-dashboard:latest
+        - name: iqoption-nginx-backend
+          image: wouerner/iqoption-php-fpm:latest
           ports:
-            - containerPort: 80
+            - containerPort: 9000

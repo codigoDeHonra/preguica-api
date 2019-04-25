@@ -1,9 +1,10 @@
 version: '3'
 services:
   nginx:
-    build:
-      context: .
-      dockerfile: docker/nginx/Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: docker/nginx/Dockerfile
+    image: wouerner/iqoption-nginx-backend
     container_name: iqoption-nginx-backend
     # user: $USER
     working_dir: /app
@@ -18,7 +19,8 @@ services:
       - "php-fpm"
 
   php-fpm:
-    build: docker/php-fpm
+    # build: docker/php-fpm
+    image: wouerner/iqoption-php-fpm
     container_name: iqoption-php-fpm-backend
     working_dir: /app
     volumes:
@@ -28,10 +30,11 @@ services:
       - "mongo"
 
   mongo:
-    container_name: iqoption-mongo-db
-    build:
-      context: .
-      dockerfile: docker/mongo/Dockerfile
+    container_name: iqoption-mongodb
+    image: wouerner/iqoption-mongodb
+    # build:
+    #   context: .
+    #   dockerfile: docker/mongo/Dockerfile
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
