@@ -6,18 +6,13 @@ use Illuminate\Http\Request;
 
 class Trade extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //
     }
-    public function index(Request $request) {
+    public function index(Request $request, $userId) {
 
-        $trades = Trades::all();
+        $trades = Trades::where('usuarioId', '=', $userId)->get();
 
         return response()->json($trades, 200);
     }
@@ -29,6 +24,8 @@ class Trade extends Controller
         $trade->date = $request->input('date');
         $trade->pair = $request->input('pair');
         $trade->investiment = $request->input('investiment');
+        $trade->usuarioId = $request->input('usuarioId');
+
         $trade->save();
 
         return response()->json('criado com sucesso', 200);

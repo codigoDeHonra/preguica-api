@@ -27,7 +27,7 @@ $router->get('/db', function () use ($router) {
 /*     'as' => 'trades', 'uses' => 'ExampleController@trades' */
 /* ]); */
 
-$router->get('/trades', [
+$router->get('/trades/{userId}', [
     'as' => 'trade', 'uses' => 'Trade@index'
 ]);
 
