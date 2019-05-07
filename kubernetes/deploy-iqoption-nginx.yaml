@@ -19,3 +19,4 @@ spec:
           image: wouerner/iqoption-nginx-backend:latest
           ports:
             - containerPort: 8081
+          imagePullPolicy: Always

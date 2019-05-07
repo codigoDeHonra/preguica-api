@@ -19,3 +19,4 @@ spec:
           image: wouerner/iqoption-php-fpm:latest
           ports:
             - containerPort: 9000
+          imagePullPolicy: Always

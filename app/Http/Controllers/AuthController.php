@@ -17,8 +17,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        /* dd(Hash::make('1234')); */
-
         $credentials = $request->all();
 
         if (! $token = Auth::attempt($credentials)) {

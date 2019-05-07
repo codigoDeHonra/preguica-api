@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Trades;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Hash;
 class Trade extends Controller
 {
     public function __construct()
