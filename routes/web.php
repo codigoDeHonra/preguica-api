@@ -56,3 +56,7 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
+
+$router->post('/user', [
+    'as' => 'user', 'uses' => 'User@post'
+]);

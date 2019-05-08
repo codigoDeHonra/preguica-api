@@ -23,7 +23,7 @@ class Trade extends Controller
         $trade = new Trades();
         $trade->payout = $request->input('payout');
         $trade->date = $request->input('date');
-        $trade->pair = $request->input('pair');
+        $trade->asset = $request->input('asset');
         $trade->investiment = $request->input('investiment');
         $trade->usuarioId = $request->input('usuarioId');
 
