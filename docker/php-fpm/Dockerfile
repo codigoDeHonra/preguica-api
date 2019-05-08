@@ -1,4 +1,18 @@
-FROM php:7.2.5-fpm
+FROM composer:1.7 as vendor
+
+WORKDIR /app
+
+COPY . /app
+RUN ls -la
+
+RUN composer install \
+    --ignore-platform-reqs \
+    --no-interaction \
+    --no-plugins \
+    --no-scripts \
+    --prefer-dist
+
+FROM php:7.2.5-fpm as php
 
 WORKDIR "/app"
 
@@ -21,5 +35,7 @@ RUN apt-get install -y libxml2-dev
 RUN ls -la
 
 COPY . /app
+
+COPY --from=vendor /app/vendor/ /app/vendor/
 
 ENTRYPOINT ["/app/docker/php-fpm/entrypoint.sh"]
