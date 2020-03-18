@@ -39,8 +39,20 @@ $router->put('/trade/{id}', [
     'as' => 'trade', 'uses' => 'Trade@put'
 ]);
 
-$router->delete('/trade/{id}', [
-    'as' => 'trade', 'uses' => 'Trade@delete'
+$router->get('/category', [
+    'as' => 'category', 'uses' => 'Category@index'
+]);
+
+$router->post('/category', [
+    'as' => 'category', 'uses' => 'Category@post'
+]);
+
+$router->put('/category/{id}', [
+    'as' => 'category', 'uses' => 'Category@put'
+]);
+
+$router->delete('/category/{id}', [
+    'as' => 'category', 'uses' => 'Category@delete'
 ]);
 
 Route::group([
