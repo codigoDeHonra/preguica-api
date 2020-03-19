@@ -39,6 +39,10 @@ $router->put('/trade/{id}', [
     'as' => 'trade', 'uses' => 'Trade@put'
 ]);
 
+$router->delete('/trade/{id}', [
+    'as' => 'trade', 'uses' => 'Trade@delete'
+]);
+
 $router->get('/category', [
     'as' => 'category', 'uses' => 'Category@index'
 ]);
