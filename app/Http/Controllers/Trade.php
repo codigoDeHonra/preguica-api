@@ -21,6 +21,8 @@ class Trade extends Controller
     public function post(Request $request) {
 
         $trade = new Trades();
+        $trade->broker = $request->input('broker');
+        $trade->amount = $request->input('amount');
         $trade->payout = $request->input('payout');
         $trade->date = $request->input('date');
         $trade->asset = $request->input('asset');
@@ -36,6 +38,8 @@ class Trade extends Controller
 
         $trade = Trades::find($id);
 
+        $trade->broker = $request->input('broker');
+        $trade->amount = $request->input('amount');
         $trade->payout = $request->input('payout');
         $trade->date = $request->input('date');
         $trade->pair = $request->input('pair');

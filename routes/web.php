@@ -59,6 +59,38 @@ $router->delete('/category/{id}', [
     'as' => 'category', 'uses' => 'Category@delete'
 ]);
 
+$router->get('/broker', [
+    'as' => 'category', 'uses' => 'Broker@index'
+]);
+
+$router->post('/broker', [
+    'as' => 'category', 'uses' => 'Broker@post'
+]);
+
+$router->put('/broker/{id}', [
+    'as' => 'category', 'uses' => 'Broker@put'
+]);
+
+$router->delete('/broker/{id}', [
+    'as' => 'category', 'uses' => 'Broker@delete'
+]);
+
+$router->get('/asset', [
+    'as' => 'category', 'uses' => 'Asset@index'
+]);
+
+$router->post('/asset', [
+    'as' => 'category', 'uses' => 'Asset@post'
+]);
+
+$router->put('/asset/{id}', [
+    'as' => 'category', 'uses' => 'Asset@put'
+]);
+
+$router->delete('/asset/{id}', [
+    'as' => 'category', 'uses' => 'Asset@delete'
+]);
+
 Route::group([
 
     /* 'middleware' => 'api', */
