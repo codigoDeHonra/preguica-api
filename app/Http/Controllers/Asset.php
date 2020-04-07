@@ -12,20 +12,20 @@ class Asset extends Controller
     }
     public function index(Request $request) {
 
-        $asset = AssetModel::all();
+        $asset = AssetModel::with(['category'])->get();
 
-        return response()->json($asset, 200);
+        return response()->json($asset->load('category'), 200);
     }
 
     public function post(Request $request) {
 
         $asset = new AssetModel();
         $asset->name = $request->input('name');
-        $asset->category = $request->input('category');
+        $asset->category = $request->input('category')['_id'];
 
         $asset->save();
 
-        return response()->json('criado com sucesso', 200);
+        return response()->json(['msg' => 'criado com sucesso', 'asset' => $asset], 200);
     }
 
     public function put(Request $request, $id) {
@@ -33,6 +33,7 @@ class Asset extends Controller
         $asset = assetModel::find($id);
 
         $asset->name = $request->input('name');
+        $asset->category = $request->input('category')['_id'];
 
         $asset->save();
 

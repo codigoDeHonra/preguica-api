@@ -27,9 +27,14 @@ $router->get('/db', function () use ($router) {
 /*     'as' => 'trades', 'uses' => 'ExampleController@trades' */
 /* ]); */
 
+$router->get('/trades/count', [
+    'as' => 'trade', 'uses' => 'Trade@count'
+]);
+
 $router->get('/trades/{userId}', [
     'as' => 'trade', 'uses' => 'Trade@index'
 ]);
+
 
 $router->post('/trade', [
     'as' => 'trade', 'uses' => 'Trade@post'
@@ -57,6 +62,10 @@ $router->put('/category/{id}', [
 
 $router->delete('/category/{id}', [
     'as' => 'category', 'uses' => 'Category@delete'
+]);
+
+$router->get('/category/wallet/{walletId}', [
+    'as' => 'category-by-wallet', 'uses' => 'Category@byWallet'
 ]);
 
 $router->get('/broker', [
@@ -89,6 +98,26 @@ $router->put('/asset/{id}', [
 
 $router->delete('/asset/{id}', [
     'as' => 'category', 'uses' => 'Asset@delete'
+]);
+
+
+$router->get('/wallet', [
+    'as' => 'wallet', 'uses' => 'Wallet@index'
+]);
+$router->get('/wallet/count', [
+    'as' => 'wallet', 'uses' => 'Wallet@count'
+]);
+
+$router->post('/wallet', [
+    'as' => 'wallet', 'uses' => 'Wallet@post'
+]);
+
+$router->put('/wallet/{id}', [
+    'as' => 'wallet', 'uses' => 'Wallet@put'
+]);
+
+$router->delete('/wallet/{id}', [
+    'as' => 'wallet', 'uses' => 'Wallet@delete'
 ]);
 
 Route::group([

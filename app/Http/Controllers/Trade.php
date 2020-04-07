@@ -18,6 +18,24 @@ class Trade extends Controller
         return response()->json($trades, 200);
     }
 
+    public function count() {
+        $aux = [];
+
+        $trades = Trades::groupBy('asset')->get(['asset']);
+        foreach($trades as $t) {
+            /* dd($t->asset['name']); */
+            $aux[] = [
+                "name" => $t->asset['name'],
+                "total" => Trades::where('asset.name', $t->asset['name'])
+                                                         ->groupBy('asset')
+                                                         ->sum('investiment')
+                          ];
+        }
+
+
+        return response()->json($aux, 200);
+    }
+
     public function post(Request $request) {
 
         $trade = new Trades();
@@ -26,12 +44,12 @@ class Trade extends Controller
         $trade->payout = $request->input('payout');
         $trade->date = $request->input('date');
         $trade->asset = $request->input('asset');
-        $trade->investiment = $request->input('investiment');
+        $trade->investiment = (float)$request->input('investiment');
         $trade->usuarioId = $request->input('usuarioId');
 
         $trade->save();
 
-        return response()->json('criado com sucesso', 200);
+        return response()->json(['msg' => 'criado com sucesso', 'trade' => $trade], 200);
     }
 
     public function put(Request $request, $id) {
