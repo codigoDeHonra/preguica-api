@@ -7,4 +7,9 @@ class Trades extends Eloquent {
 
     protected $collection = 'trades';
 
+    public function asset()
+    {
+        return $this->belongsTo(Asset::class, 'asset_id');
+    }
+
 }

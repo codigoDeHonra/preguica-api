@@ -24,27 +24,30 @@ class Wallet extends Controller
         $aux3 = [];
         $wallets = WalletModel::all();
 
+        /* dd($wallets);die; */
         foreach($wallets as $wallet) {
 
-            foreach($wallet->categories as $c) {
+            if($wallet->categories->count() > 0 ){
 
-                foreach($c->assets as $a) {
-                    /* dd($a); */
-                    $aux[$c->name][] = TradesModel::where('asset.name', $a->name)
-                                                                 ->groupBy('asset')
-                                                                 ->sum('investiment');
+                foreach($wallet->categories as $c) {
+                    if($c->assets->count() > 0){
+
+                        foreach($c->assets as $a) {
+                            $aux[$c->name][] = TradesModel::where('assetObj.name', $a->name)
+                                   ->groupBy('asset_id')
+                                   ->sum('investiment');
+                        }
+
+                        $aux2[$wallet->name][] = array_sum($aux[$c->name]) ;
+                        unset($aux[$c->name]);
+                        $aux = array_filter($aux);
+                    }
                 }
-
-                $aux2[$wallet->name][] = array_sum($aux[$c->name]) ;
-                unset($aux[$c->name]);
-                $aux = array_filter($aux);
+                $aux3[] = ['name' => $wallet->name, 'total' => array_sum($aux2[$wallet->name]) ];
+                /* unset($aux[$c->name]); */
+                /* $aux3 = array_filter($aux); */
             }
-            $aux3[] = ['name' => $wallet->name, 'total' => array_sum($aux2[$wallet->name]) ];
-            /* unset($aux[$c->name]); */
-            /* $aux3 = array_filter($aux); */
         }
-        /* dd($aux3); */
-
 
         return response()->json($aux3, 200);
     }

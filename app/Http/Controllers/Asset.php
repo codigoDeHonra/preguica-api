@@ -21,7 +21,7 @@ class Asset extends Controller
 
         $asset = new AssetModel();
         $asset->name = $request->input('name');
-        $asset->category = $request->input('category')['_id'];
+        $asset->category_id = $request->input('category')['_id'];
 
         $asset->save();
 

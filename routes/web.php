@@ -27,6 +27,10 @@ $router->get('/db', function () use ($router) {
 /*     'as' => 'trades', 'uses' => 'ExampleController@trades' */
 /* ]); */
 
+$router->get('/ticker', [
+    'as' => 'trade', 'uses' => 'Trade@ticker'
+]);
+
 $router->get('/trades/count', [
     'as' => 'trade', 'uses' => 'Trade@count'
 ]);

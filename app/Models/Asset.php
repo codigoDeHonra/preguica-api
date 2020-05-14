@@ -9,6 +9,6 @@ class Asset extends Eloquent {
 
     public function category()
     {
-        return $this->hasOne(Category::class, 'category');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

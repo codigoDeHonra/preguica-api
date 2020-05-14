@@ -15,7 +15,7 @@ class Category extends Controller
     }
     public function index(Request $request) {
 
-        $category = CategoryModel::all();
+        $category = CategoryModel::all()->load('getWallet');
 
         return response()->json($category, 200);
     }
@@ -28,19 +28,22 @@ class Category extends Controller
 
         foreach($wallet->categories as $c) {
 
-            foreach($c->assets as $a) {
-                /* dd($a); */
-                $aux[$c->name][] = TradesModel::where('asset.name', $a->name)
-                                                             ->groupBy('asset')
-                                                             ->sum('investiment');
+            if($c->assets->count() > 0){
+                foreach($c->assets as $a) {
+                    $aux[$c->name][] = TradesModel::where('assetObj.name', $a->name)
+                                                                 ->groupBy('asset')
+                                                                 ->sum('investiment');
+                }
+                $aux2[] = [
+                    '_id' => $c->_id,
+                    'name' => $c->name,
+                    'percentageInWallet' => $c->percentageInWallet,
+                    'total' => array_sum($aux[$c->name])
+                ];
+                unset($aux[$c->name]);
+                $aux = array_filter($aux);
             }
 
-            $aux2[] = [
-                'name' => $c->name,
-                'total' => array_sum($aux[$c->name])
-            ];
-            unset($aux[$c->name]);
-            $aux = array_filter($aux);
         }
 
 
@@ -52,6 +55,7 @@ class Category extends Controller
         $category = new CategoryModel();
         $category->name = $request->input('name');
         $category->wallet = $request->input('wallet')['_id'];
+        $category->percentageInWallet= (int)$request->input('percentageInWallet');
 
         $category->save();
 
@@ -64,6 +68,7 @@ class Category extends Controller
 
         $category->name = $request->input('name');
         $category->wallet = $request->input('wallet')['_id'];
+        $category->percentageInWallet= (int)$request->input('percentageInWallet');
 
         $category->save();
 

@@ -7,13 +7,13 @@ class Category extends Eloquent {
 
     protected $collection = 'categories';
 
-    public function wallet()
+    public function getWallet()
     {
-        return $this->hasOne(Wallet::class);
+        return $this->belongsTo(Wallet::class, 'wallet');
     }
 
     public function assets()
     {
-        return $this->hasMany(Asset::class, 'category');
+        return $this->hasMany(Asset::class, 'category_id');
     }
 }
