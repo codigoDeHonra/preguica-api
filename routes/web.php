@@ -27,6 +27,10 @@ $router->get('/db', function () use ($router) {
 /*     'as' => 'trades', 'uses' => 'ExampleController@trades' */
 /* ]); */
 
+$router->get('/excel', [
+    'as' => 'trade', 'uses' => 'Trade@excel'
+]);
+
 $router->get('/ticker', [
     'as' => 'trade', 'uses' => 'Trade@ticker'
 ]);

@@ -7,10 +7,12 @@
     "require": {
         "php": ">=7.1.3",
         "guzzlehttp/guzzle": "^6.5",
-        "jenssegers/mongodb": "^3.5",
-        "laravel/lumen-framework": "^6.0",
-        "tymon/jwt-auth": "1.0.0",
-        "vlucas/phpdotenv": "^3.3"
+        "jenssegers/mongodb": "4.0.0-alpha.1",
+        "laravel/lumen-framework": "^7.0",
+        "league/flysystem": "^1.0",
+        "maatwebsite/excel": "^3.1",
+        "tymon/jwt-auth": "^1.0.0",
+        "vlucas/phpdotenv": "^4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.4",

@@ -6,6 +6,10 @@ use App\Models\Asset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Imports\UsersImport;
+
 use Illuminate\Support\Facades\Hash;
 class Trade extends Controller
 {
@@ -88,6 +92,11 @@ class Trade extends Controller
 
 
         return response()->json($aux, 200);
+    }
+
+    public function excel() {
+        $array = Excel::toArray(new UsersImport, 'users.xlsx');
+        die('ddd');
     }
 
     public function post(Request $request) {

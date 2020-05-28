@@ -19,8 +19,10 @@ services:
       - "php-fpm"
 
   php-fpm:
-    # build: docker/php-fpm
-    image: wouerner/iqoption-php-fpm
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+    #image: wouerner/iqoption-php-fpm
     container_name: iqoption-php-fpm-backend
     working_dir: /app
     volumes:

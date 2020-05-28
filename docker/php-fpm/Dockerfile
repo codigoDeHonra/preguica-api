@@ -1,4 +1,4 @@
-FROM composer:1.7 as vendor
+FROM composer:1.9.3 as vendor
 
 WORKDIR /app
 
@@ -12,7 +12,8 @@ RUN composer install \
     --no-scripts \
     --prefer-dist
 
-FROM php:7.2.5-fpm as php
+FROM php:7.4-fpm as php
+#FROM php:7.2.5-fpm as php
 
 WORKDIR "/app"
 
@@ -24,7 +25,20 @@ RUN echo 'depencias do mongo'
 
 RUN apt-get install -y libcurl4-openssl-dev pkg-config libssl-dev
 
+RUN apt-get install -y libonig-dev
+
+RUN apt-get install -y libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
+            libfreetype6-dev
+
+RUN apt-get install -y \
+            zlib1g-dev \
+            libzip-dev
+
 RUN docker-php-ext-install mbstring pdo
+
+RUN docker-php-ext-install zip
+
+RUN docker-php-ext-install gd
 
 RUN pecl install mongodb
 
