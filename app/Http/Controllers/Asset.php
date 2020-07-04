@@ -17,11 +17,19 @@ class Asset extends Controller
         return response()->json($asset->load('category'), 200);
     }
 
+    public function show(Request $request, $code) {
+
+        $asset = AssetModel::where('name', $code)->with(['category'])->first();
+
+        return response()->json($asset->load('category'), 200);
+    }
+
     public function post(Request $request) {
 
         $asset = new AssetModel();
-        $asset->name = $request->input('name');
+        $asset->name = trim($request->input('name'));
         $asset->category_id = $request->input('category')['_id'];
+        $asset->price = $request->input('price');
 
         $asset->save();
 
@@ -32,8 +40,9 @@ class Asset extends Controller
 
         $asset = assetModel::find($id);
 
-        $asset->name = $request->input('name');
-        $asset->category = $request->input('category')['_id'];
+        $asset->name = trim($request->input('name'));
+        $asset->category_id = $request->input('category')['_id'];
+        $asset->price = $request->input('price');
 
         $asset->save();
 

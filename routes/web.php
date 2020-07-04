@@ -27,12 +27,27 @@ $router->get('/db', function () use ($router) {
 /*     'as' => 'trades', 'uses' => 'ExampleController@trades' */
 /* ]); */
 
-$router->get('/excel', [
+/* $router->get('/excel', [ */
+/*     'middleware' => 'auth', */
+/*     'as' => 'trade', 'uses' => 'Trade@excel' */
+/* ]); */
+
+$router->post('/excel', [
+    /* 'middleware' => 'auth', */
     'as' => 'trade', 'uses' => 'Trade@excel'
+]);
+
+$router->get('/company', [
+    /* 'middleware' => 'auth', */
+    'as' => 'trade', 'uses' => 'Trade@company'
 ]);
 
 $router->get('/ticker', [
     'as' => 'trade', 'uses' => 'Trade@ticker'
+]);
+
+$router->get('/cedro', [
+    'as' => 'trade', 'uses' => 'Trade@cedro'
 ]);
 
 $router->get('/trades/count', [
@@ -95,6 +110,9 @@ $router->delete('/broker/{id}', [
 $router->get('/asset', [
     'as' => 'category', 'uses' => 'Asset@index'
 ]);
+$router->get('/asset/{code}', [
+    'as' => 'category', 'uses' => 'Asset@show'
+]);
 
 $router->post('/asset', [
     'as' => 'category', 'uses' => 'Asset@post'
@@ -108,11 +126,20 @@ $router->delete('/asset/{id}', [
     'as' => 'category', 'uses' => 'Asset@delete'
 ]);
 
+$router->get('/study/{code}', [
+    'as' => 'study', 'uses' => 'Study@index'
+]);
 
-$router->get('/wallet', [
+$router->post('/study', [
+    'middleware' => 'auth',
+    'as' => 'study', 'uses' => 'Study@post'
+]);
+
+$router->get('/wallet/profile/{profileId}', [
     'as' => 'wallet', 'uses' => 'Wallet@index'
 ]);
-$router->get('/wallet/count', [
+
+$router->get('/wallet/count/profile/{profileId}', [
     'as' => 'wallet', 'uses' => 'Wallet@count'
 ]);
 
@@ -126,6 +153,28 @@ $router->put('/wallet/{id}', [
 
 $router->delete('/wallet/{id}', [
     'as' => 'wallet', 'uses' => 'Wallet@delete'
+]);
+
+$router->get('/profile/user/{userId}', [
+    'as' => 'profile', 'uses' => 'Profile@index'
+]);
+
+$router->get('/profile/{code}', [
+    'as' => 'profile', 'uses' => 'Profile@show'
+]);
+
+$router->post('/profile', [
+    'middleware' => 'auth',
+    'as' => 'profile',
+    'uses' => 'Profile@post'
+]);
+
+$router->put('/profile/{id}', [
+    'as' => 'profile', 'uses' => 'Profile@put'
+]);
+
+$router->delete('/profile/{id}', [
+    'as' => 'profile', 'uses' => 'Profile@delete'
 ]);
 
 Route::group([

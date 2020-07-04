@@ -15,7 +15,7 @@ class Category extends Controller
     }
     public function index(Request $request) {
 
-        $category = CategoryModel::all()->load('getWallet');
+        $category = CategoryModel::all()->load('wallet');
 
         return response()->json($category, 200);
     }
@@ -25,12 +25,13 @@ class Category extends Controller
         $aux2 = [];
 
         $wallet = WalletModel::find($walletId);
+        /* dd($wallet); */
 
         foreach($wallet->categories as $c) {
 
             if($c->assets->count() > 0){
                 foreach($c->assets as $a) {
-                    $aux[$c->name][] = TradesModel::where('assetObj.name', $a->name)
+                    $aux[$c->name][] = TradesModel::where('asset_id', $a->_id)
                                                                  ->groupBy('asset')
                                                                  ->sum('investiment');
                 }

@@ -6,6 +6,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 class Trades extends Eloquent {
 
     protected $collection = 'trades';
+    protected $dates = ['date'];
 
     public function asset()
     {

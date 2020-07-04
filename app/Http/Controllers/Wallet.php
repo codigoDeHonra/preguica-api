@@ -11,20 +11,20 @@ class Wallet extends Controller
     {
         //
     }
-    public function index(Request $request) {
+    public function index(Request $request, $profileId) {
 
-        $wallet = WalletModel::all();
+        $wallet = WalletModel::where('profile_id', $profileId)->get();
 
         return response()->json($wallet, 200);
     }
 
-    public function count(Request $request) {
+    public function count(Request $request, $profileId) {
         $aux = [];
         $aux2 = [];
         $aux3 = [];
-        $wallets = WalletModel::all();
+        $wallets = WalletModel::where('profile_id', $profileId)->get();
+        /* dd($profileId, $wallets); */
 
-        /* dd($wallets);die; */
         foreach($wallets as $wallet) {
 
             if($wallet->categories->count() > 0 ){
@@ -32,20 +32,25 @@ class Wallet extends Controller
                 foreach($wallet->categories as $c) {
                     if($c->assets->count() > 0){
 
+                        $totalAsset = 0;
                         foreach($c->assets as $a) {
-                            $aux[$c->name][] = TradesModel::where('assetObj.name', $a->name)
-                                   ->groupBy('asset_id')
-                                   ->sum('investiment');
+                            $tradesSum = TradesModel::where('asset_id', $a->_id)->get();
+                            foreach($tradesSum as $s) {
+                                $totalAsset += ($s->amount * $s->investiment);
+                            }
                         }
+                        /* dd($aux[$c->name]); */
 
-                        $aux2[$wallet->name][] = array_sum($aux[$c->name]) ;
+                        $aux2[$wallet->name][] = $totalAsset;
                         unset($aux[$c->name]);
                         $aux = array_filter($aux);
                     }
                 }
-                $aux3[] = ['name' => $wallet->name, 'total' => array_sum($aux2[$wallet->name]) ];
-                /* unset($aux[$c->name]); */
-                /* $aux3 = array_filter($aux); */
+
+                $aux3[] = [
+                    'name' => $wallet->name,
+                    'total' => array_sum($aux2[$wallet->name])
+                ];
             }
         }
 

@@ -7,9 +7,9 @@ class Category extends Eloquent {
 
     protected $collection = 'categories';
 
-    public function getWallet()
+    public function wallet()
     {
-        return $this->belongsTo(Wallet::class, 'wallet');
+        return $this->belongsTo(Wallet::class, 'wallet_id');
     }
 
     public function assets()

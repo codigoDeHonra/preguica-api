@@ -23,6 +23,9 @@ $app = new Laravel\Lumen\Application(
 
 $app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
 
+$app->make('queue');
+$app->register(Jenssegers\Mongodb\MongodbQueueServiceProvider::class);
+
 $app->withFacades();
 
 $app->withEloquent();
@@ -92,7 +95,10 @@ $app->configure('filesystems');
 $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 
 
+$app->configure('excel');
 $app->register(Maatwebsite\Excel\ExcelServiceProvider::class);
+
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

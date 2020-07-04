@@ -9,6 +9,6 @@ class Wallet extends Eloquent {
 
     public function categories()
     {
-        return $this->hasMany(Category::class, 'wallet');
+        return $this->hasMany(Category::class, 'wallet_id');
     }
 }
