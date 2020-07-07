@@ -20,3 +20,22 @@ spec:
           ports:
             - containerPort: 9000
           imagePullPolicy: Always
+          env:
+          - name: APP_DEBUG
+            value: "true"
+          - name: DB_HOST
+            value: "mongo"
+          - name: DB_PORT
+            value: "27017"
+          - name: DB_DATABASE
+            value: "iqoption"
+          - name: DB_USERNAME
+            value: "root"
+          - name: DB_PASSWORD
+            value: "root"
+          - name: JWT_SECRET
+            value: "SlnG0QnLzt8OSXYnEHLwMQ0NWa2TEgYnB06ojwVllENeWQJ7t1fFUxmb0dXlb8xn"
+
+
+
+
