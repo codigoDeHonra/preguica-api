@@ -23,8 +23,8 @@ $app = new Laravel\Lumen\Application(
 
 $app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
 
-$app->make('queue');
-$app->register(Jenssegers\Mongodb\MongodbQueueServiceProvider::class);
+/* $app->make('queue'); */
+/* $app->register(Jenssegers\Mongodb\MongodbQueueServiceProvider::class); */
 
 $app->withFacades();
 
