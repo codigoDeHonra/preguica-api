@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"iqoption.assets"}],"uuid":"4f4719d700c44eb3a3e24f08a0d12a73"}

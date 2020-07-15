@@ -22,7 +22,7 @@ class Profile extends Controller
 
         $profile = new ProfileModel();
         $profile->name = $request->input('name');
-        $profile->usuario_id = \Auth::user()->id;
+        $profile->user_id = \Auth::user()->id;
 
         $profile->save();
 

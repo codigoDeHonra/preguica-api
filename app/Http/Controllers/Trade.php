@@ -183,6 +183,7 @@ class Trade extends Controller
     }
 
     public function excel(Request $request) {
+        /* dd($request->broker); */
 
         /* $array = Excel::toArray(new \App\Imports\UsersImport, 'InfoCEI.xls'); */
         $array = Excel::toArray(new \App\Imports\UsersImport, $request->file('file'));
@@ -208,11 +209,12 @@ class Trade extends Controller
             if($investiment > 0 && $asset && $asset->name){
                 $trade = new Trades();
 
-                $trade->broker = '';
+                $trade->broker_id = $request->broker;
                 $trade->amount = $array[0][$i][8];
                 $trade->payout = 0;
                 $trade->date = $date;
                 $trade->price = $array[0][$i][9];
+                $trade->origin = 'CEI';
 
                 $trade->asset()->associate($asset);
                 $trade->assetObj = ['_id' => $asset->_id, 'name' => $asset->name];

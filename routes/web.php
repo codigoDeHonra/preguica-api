@@ -37,9 +37,19 @@ $router->post('/excel', [
     'as' => 'trade', 'uses' => 'Trade@excel'
 ]);
 
+/* $router->get('/company', [ */
+/*     /1* 'middleware' => 'auth', *1/ */
+/*     'as' => 'trade', 'uses' => 'Trade@company' */
+/* ]); */
+
 $router->get('/company', [
     /* 'middleware' => 'auth', */
-    'as' => 'trade', 'uses' => 'Trade@company'
+    'as' => 'company', 'uses' => 'Company@index'
+]);
+
+$router->get('/company/assets', [
+    /* 'middleware' => 'auth', */
+    'as' => 'company', 'uses' => 'Company@assets'
 ]);
 
 $router->get('/ticker', [

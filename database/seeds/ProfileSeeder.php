@@ -20,7 +20,6 @@ class ProfileSeeder extends Seeder
 
         DB::table('profiles')->insert([
             'name' => 'Padrão',
-            'email' => 'wouerner@protonmail.com',
             'user_id' => $userId,
         ]);
     }
