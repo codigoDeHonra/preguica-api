@@ -21,9 +21,17 @@ class CategorySeeder extends Seeder
         $walletId = (string)$wallet['_id'];
 
         DB::table('categories')->insert([
-            'name' => 'Carteira 1',
+            'name' => 'Categoria 1',
             'wallet_id' => $walletId,
-            'percentageInWallet' => $walletId,
+            'percentageInWallet' => 50,
+            'user_id' => $userId,
+            'profile_id' => $profileId,
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Categoria 2',
+            'wallet_id' => $walletId,
+            'percentageInWallet' => 50,
             'user_id' => $userId,
             'profile_id' => $profileId,
         ]);

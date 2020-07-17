@@ -20,6 +20,13 @@ class ProfileSeeder extends Seeder
 
         DB::table('profiles')->insert([
             'name' => 'Padrão',
+            'default' => true,
+            'user_id' => $userId,
+        ]);
+
+        DB::table('profiles')->insert([
+            'name' => 'Avançado',
+            'default' => false,
             'user_id' => $userId,
         ]);
     }

@@ -22,6 +22,7 @@ class Profile extends Controller
 
         $profile = new ProfileModel();
         $profile->name = $request->input('name');
+        $profile->default = (boolean)$request->input('default');
         $profile->user_id = \Auth::user()->id;
 
         $profile->save();
@@ -34,6 +35,7 @@ class Profile extends Controller
         $profile = ProfileModel::find($id);
 
         $profile->name = $request->input('name');
+        $profile->default = (boolean)$request->input('default');
 
         $profile->save();
 

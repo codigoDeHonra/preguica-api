@@ -19,5 +19,10 @@ class WalletSeeder extends Seeder
             'profile_id' => $profileId,
         ]);
 
+        DB::table('wallets')->insert([
+            'name' => 'Carteira 2',
+            'profile_id' => $profileId,
+        ]);
+
     }
 }

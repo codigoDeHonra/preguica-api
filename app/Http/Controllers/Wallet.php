@@ -48,6 +48,7 @@ class Wallet extends Controller
                 }
 
                 $aux3[] = [
+                    '_id' => $wallet->_id,
                     'name' => $wallet->name,
                     'total' => array_sum($aux2[$wallet->name])
                 ];
