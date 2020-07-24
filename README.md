@@ -2,5 +2,5 @@
   <img height="300px" src="docs/sloth.png" alt="Sublime's custom image"/>
 </p>
 
-# preguica-api
+# Preguica API
 Back end do projeto preguiça.money 
