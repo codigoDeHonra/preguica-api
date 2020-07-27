@@ -123,6 +123,7 @@ class Trade extends Controller
         $trades = Trades::where('user_id', $userId)->get();
 
         $trades->load('asset');
+        $trades->load('broker');
 
         /* echo '<pre>'; */
         foreach($trades as $key => $trade) {
@@ -130,6 +131,7 @@ class Trade extends Controller
             $aux[$key] = $trade;
             $aux[$key]->asset = $trade->asset->load('category');
             $aux[$key]->wallet = $trade->asset->category->wallet;
+            $aux[$key]->broker = $trade->broker;
 
             /* var_dump($trade->_id); */
             /* var_dump($trade->asset->name); */
@@ -220,7 +222,7 @@ class Trade extends Controller
                 $trade->assetObj = ['_id' => $asset->_id, 'name' => $asset->name];
 
                 $trade->investiment = (float)$array[0][$i][9];
-                $trade->usuarioId = \Auth::user()->id;
+                $trade->user_id = \Auth::user()->id;
 
                 $trade->save();
             }

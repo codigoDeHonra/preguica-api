@@ -201,6 +201,24 @@ Route::group([
 
 });
 
+$router->get(
+    '/user',
+    [
+        'as' => 'user',
+        'uses' => 'User@index'
+    ]
+);
+
 $router->post('/user', [
     'as' => 'user', 'uses' => 'User@post'
+]);
+
+$router->put('/user', [
+    'as' => 'user',
+    'uses' => 'User@put'
+]);
+
+$router->delete('/user', [
+    'as' => 'user',
+    'uses' => 'User@del'
 ]);

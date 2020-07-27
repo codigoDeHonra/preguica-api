@@ -13,4 +13,9 @@ class Trades extends Eloquent {
         return $this->belongsTo(Asset::class, 'asset_id');
     }
 
+    public function broker()
+    {
+        return $this->belongsTo(Broker::class, 'broker_id');
+    }
+
 }
