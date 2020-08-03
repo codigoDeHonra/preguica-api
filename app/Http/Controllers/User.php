@@ -34,7 +34,8 @@ class User extends Controller
 
     public function put(Request $request)
     {
-        $user = new UserModel();
+        $user = UserModel::find($request->input('_id'));
+
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
@@ -43,14 +44,12 @@ class User extends Controller
         return response()->json('salvo!');
     }
 
-    public function del(Request $request)
+    public function del(Request $request, $id)
     {
-        $user = new UserModel();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = Hash::make($request->input('password'));
-        $user->save();
+        $user = UserModel::find($id);
 
-        return response()->json('salvo!');
+        UserModel::destroy($id);
+
+        return response()->json($user);
     }
 }

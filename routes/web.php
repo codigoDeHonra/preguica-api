@@ -128,9 +128,13 @@ $router->post('/asset', [
     'as' => 'category', 'uses' => 'Asset@post'
 ]);
 
-$router->put('/asset/{id}', [
-    'as' => 'category', 'uses' => 'Asset@put'
-]);
+$router->put(
+    '/asset',
+    [
+        'as' => 'asset',
+        'uses' => 'Asset@put'
+    ]
+);
 
 $router->delete('/asset/{id}', [
     'as' => 'category', 'uses' => 'Asset@delete'
@@ -218,7 +222,7 @@ $router->put('/user', [
     'uses' => 'User@put'
 ]);
 
-$router->delete('/user', [
+$router->delete('/user/{id}', [
     'as' => 'user',
     'uses' => 'User@del'
 ]);

@@ -36,9 +36,9 @@ class Asset extends Controller
         return response()->json(['msg' => 'criado com sucesso', 'asset' => $asset], 200);
     }
 
-    public function put(Request $request, $id) {
+    public function put(Request $request) {
 
-        $asset = assetModel::find($id);
+        $asset = assetModel::find($request->input('_id'));
 
         $asset->name = trim($request->input('name'));
         $asset->category_id = $request->input('category')['_id'];

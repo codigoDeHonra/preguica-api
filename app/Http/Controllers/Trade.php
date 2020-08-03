@@ -185,7 +185,6 @@ class Trade extends Controller
     }
 
     public function excel(Request $request) {
-        /* dd($request->broker); */
 
         /* $array = Excel::toArray(new \App\Imports\UsersImport, 'InfoCEI.xls'); */
         $array = Excel::toArray(new \App\Imports\UsersImport, $request->file('file'));
@@ -203,6 +202,19 @@ class Trade extends Controller
 
             $assetName = trim($array[0][$i][6]);
             /* echo $assetName; */
+
+            $asset = Asset::where('name', $array[0][$i][6])
+                ->orWhere('name', substr($assetName, 0, -1))
+                ->first();
+
+            if(!$asset) {
+                $asset = new Asset();
+                $asset->name = trim($array[0][$i][6]);
+                $asset->category_id = '5f2460ea4793555df51c9588';
+                $asset->price = 1;
+                $asset->user_id = \Auth::user()->id;
+                $asset->save();
+            }
 
             $asset = Asset::where('name', $array[0][$i][6])
                 ->orWhere('name', substr($assetName, 0, -1))
