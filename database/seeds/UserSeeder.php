@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'wouerner',
             'email' => 'wouerner@protonmail.com',
-            'password' => Hash::make('123456'),
+            'password' => '$2y$10$aWNHZKxiIKf/ombnxLciou36jgVdiyhhq.zdDO/5uK00aP3JRWM/6',
         ]);
     }
 }

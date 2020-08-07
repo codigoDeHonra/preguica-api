@@ -48,6 +48,13 @@ services:
     ports:
       - "27017:27017"
 
+  composer:
+    image: composer:latest
+    #command: composer install -vvv && composer require laravel/ui -vvv
+    entrypoint: /app/docker/composer/entrypoint.sh
+    working_dir: /app
+    volumes:
+      - .:/app
 
 #    networks:
 #      static-network:
