@@ -119,31 +119,17 @@ class Trade extends Controller
 
         $aux = [];
 
-        /* dd($userId); */
         $trades = Trades::where('user_id', $userId)->get();
 
         $trades->load('asset');
         $trades->load('broker');
 
-        /* echo '<pre>'; */
         foreach($trades as $key => $trade) {
-            /* dd($trade); */
             $aux[$key] = $trade;
             $aux[$key]->asset = $trade->asset->load('category');
             $aux[$key]->wallet = $trade->asset->category->wallet;
             $aux[$key]->broker = $trade->broker;
-
-            /* var_dump($trade->_id); */
-            /* var_dump($trade->asset->name); */
-            /* var_dump($trade->asset->category->name); */
-            /* var_dump($trade->asset->category->getWallet->name); */
-
-            /* dd($aux[$key]->asset->category->getWallet); */
-            /* dd($aux); */
         }
-        /* die; */
-
-        /* dd((array)$aux); */
 
         return response()->json($aux, 200);
     }
@@ -152,28 +138,19 @@ class Trade extends Controller
         $aux = [];
 
         $trades = Trades::groupBy('asset_id')->get([]);
-        /* $trades->load('asset'); */
-        /* dd($trades); */
         foreach($trades as $t) {
-
-
-            /* $asset = Trades::find($t->asset_id); */
-
 
             $totalAsset = 0;
             $tradesSum = Trades::where('asset_id', $t->asset->_id)->get();
             foreach($tradesSum as $s) {
                 $totalAsset += ($s->amount * $s->investiment);
             }
-/* dd($t->asset->category->name); */
+
             $aux[] = [
                 "name" => $t->asset->name,
                 "price" => $t->asset->price,
                 "category" => $t->asset->category->name,
                 "wallet" => $t->asset->category->wallet->name,
-                /* "total" => Trades::where('asset_id', $t->asset->_id) */
-                /*                                          ->groupBy('asset_id') */
-                /*                                          ->sum('investiment'), */
                 "amount" => Trades::where('asset_id', $t->asset->_id)
                                                          ->groupBy('asset_id')
                                                          ->sum('amount'),

@@ -173,6 +173,10 @@ $router->get('/profile/user/{userId}', [
     'as' => 'profile', 'uses' => 'Profile@index'
 ]);
 
+$router->get('/profile/count', [
+    'as' => 'profile', 'uses' => 'Profile@count'
+]);
+
 $router->get('/profile/{code}', [
     'as' => 'profile', 'uses' => 'Profile@show'
 ]);

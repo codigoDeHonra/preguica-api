@@ -11,4 +11,9 @@ class Profile extends Eloquent {
     {
         return $this->belongsTo(Category::class, 'user_id');
     }
+
+    public function wallet()
+    {
+        return $this->hasMany(Wallet::class, 'profile_id');
+    }
 }
