@@ -8,6 +8,6 @@ Back end do projeto preguiça.money
 # Ajuda
 * Telegram: https://t.me/preguica_money
 
-# Backend
+# Frontend
 
 * https://github.com/codigoDeHonra/preguica-webapp
