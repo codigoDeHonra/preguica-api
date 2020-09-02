@@ -1,6 +1,13 @@
 <p align="center">
-  <img height="300px" src="docs/sloth.png" alt="Sublime's custom image"/>
+  <img height="100px" src="docs/sloth.png" alt="Sublime's custom image"/>
 </p>
 
 # Preguica API
 Back end do projeto preguiça.money 
+
+# Ajuda
+* Telegram: https://t.me/preguica_money
+
+# Frontend
+
+* https://github.com/codigoDeHonra/preguica-webapp
