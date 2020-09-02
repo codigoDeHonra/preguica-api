@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^6.5",
         "jenssegers/mongodb": "4.0.0-alpha.1",
         "laravel/lumen-framework": "^7.0",
+        "laravel/ui": "^2.2",
         "league/flysystem": "^1.0",
         "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.35",

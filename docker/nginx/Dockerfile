@@ -47,11 +47,14 @@ COPY --from=ssl /app/docker/nginx/ssl /etc/ssl/
 
 RUN chmod -R 777 /var/www/html/storage
 
-EXPOSE 8081
-EXPOSE 8443
+# EXPOSE 8081
+# EXPOSE 8443
+
+EXPOSE 80
+EXPOSE 443
 
 RUN addgroup nginx root
 
-USER nginx
+#USER nginx
 
 ENTRYPOINT ["nginx","-g","daemon off;"]
