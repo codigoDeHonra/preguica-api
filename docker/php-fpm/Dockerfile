@@ -47,8 +47,6 @@ RUN docker-php-ext-enable mongodb
 
 RUN apt-get install -y libxml2-dev
 
-RUN ls -la
-
 COPY . /app
 
 COPY --from=vendor /app/vendor/ /app/vendor/

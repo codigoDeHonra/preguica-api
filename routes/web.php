@@ -221,6 +221,7 @@ $router->post('/user', [
     'as' => 'user', 'uses' => 'User@post'
 ]);
 
+
 $router->put('/user', [
     'as' => 'user',
     'uses' => 'User@put'
@@ -229,4 +230,8 @@ $router->put('/user', [
 $router->delete('/user/{id}', [
     'as' => 'user',
     'uses' => 'User@del'
+]);
+
+$router->put('/user/active', [
+    'as' => 'user', 'uses' => 'User@active'
 ]);

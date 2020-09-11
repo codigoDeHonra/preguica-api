@@ -44,6 +44,16 @@ class User extends Controller
         return response()->json('salvo!');
     }
 
+    public function active(Request $request)
+    {
+        $user = UserModel::find($request->input('_id'));
+
+        $user->active = (boolean)$request->input('active');
+        $user->save();
+
+        return response()->json('salvo!');
+    }
+
     public function del(Request $request, $id)
     {
         $user = UserModel::find($id);

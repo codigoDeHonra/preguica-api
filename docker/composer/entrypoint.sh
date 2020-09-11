@@ -4,9 +4,6 @@ set -e
 
 echo "init";
 
-#chmod -R 777 /app/storage;
-#composer install -vvv;
-
 composer install \
     --ignore-platform-reqs \
     --no-interaction \
