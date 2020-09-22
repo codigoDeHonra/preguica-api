@@ -145,18 +145,22 @@ class Trade extends Controller
             foreach($tradesSum as $s) {
                 $totalAsset += ($s->amount * $s->investiment);
             }
+            /* var_dump($t->asset->category); */
 
             $aux[] = [
                 "name" => $t->asset->name,
                 "price" => $t->asset->price,
-                "category" => $t->asset->category->name,
-                "wallet" => $t->asset->category->wallet->name,
+                "category" => $t->asset->category ? $t->asset->category->name : '',
+                /* "category" => $t->asset->category->name, */
+                "wallet" => 1,
+                /* "wallet" => $t->asset->category->wallet->name, */
                 "amount" => Trades::where('asset_id', $t->asset->_id)
                                                          ->groupBy('asset_id')
                                                          ->sum('amount'),
                'total'   => $totalAsset
            ];
         }
+        /* exit(); */
 
         return response()->json($aux, 200);
     }
