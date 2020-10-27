@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,6 +24,10 @@ class User extends Controller
 
     public function post(Request $request)
     {
+        if (Gate::allows('post-user', $request)) {
+            dd('teste');
+        }
+
         $user = new UserModel();
         $user->name = $request->input('name');
         $user->email = $request->input('email');

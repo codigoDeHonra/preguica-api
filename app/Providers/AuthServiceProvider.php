@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use App\Providers\MongoUserProvider;
 
+use App\Policies\PostUserPolicy;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -27,6 +29,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        Gate::define('post-user', function($user) {
+            return $user->role == 'post-user';
+        });
 
         Auth::provider('MongoUserProvider', function ($app, array $config) {
             // Return an instance of Illuminate\Contracts\Auth\UserProvider...

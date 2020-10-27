@@ -218,6 +218,7 @@ $router->get(
 );
 
 $router->post('/user', [
+    'middleware' => 'auth',
     'as' => 'user', 'uses' => 'User@post'
 ]);
 
