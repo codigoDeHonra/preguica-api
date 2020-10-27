@@ -105,7 +105,6 @@ class Profile extends Controller
     /* } */
 
     public function post(Request $request) {
-
         $profile = new ProfileModel();
         $profile->name = $request->input('name');
         $profile->default = (boolean)$request->input('default');
